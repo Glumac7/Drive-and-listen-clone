@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import StateContext from './StateContext';
 
-const Video = ({clickedURL, onLoadVideo, videos}) => {
+const Video = () => {
 
+    const [values, setValues] = useState({clickedURL: 0, playbackSpeed: 1});
     const [firstLoad, setFirstLoad] = useState(true);
     const [player, setPlayer] = useState();
 
     function onYouTubeIframeAPIReady()  {
 
         setPlayer(new window.YT.Player('my-player', {
-            'videoId': videos[onLoadVideo].url,
-        
+            'videoId': values.videos[values.onLoadVideo].url,
             'playerVars': {
                 'autoplay': 1,
                 'controls': 0,
@@ -23,17 +24,28 @@ const Video = ({clickedURL, onLoadVideo, videos}) => {
                 'autohide': 1
             },
             'events': {
+                onStateChange: onStateChange,
                 onReady: function (event) {
-                    event.target.seekTo(Math.random() * ((event.target.getDuration()/2) - 80) + 8);
+                    event.target.seekTo((Math.random() * ((event.target.getDuration()/2) - 80) + 80));
                     event.target.playVideo();
+                    event.target.setPlaybackRate(values.playbackSpeed);
                     event.target.mute();
                 }
             }
             
         }));
-        
     };
-   
+
+    //when playbackSpeed changes:
+    useEffect(() => {
+        if(player != undefined)
+        {
+            player.setPlaybackRate(values.playbackSpeed)
+        }
+       
+    }, [values.playbackSpeed]);
+
+    //when clickedURL changes:
     useEffect(() => { 
 
         if (!window.YT) 
@@ -43,21 +55,22 @@ const Video = ({clickedURL, onLoadVideo, videos}) => {
             
             // onYouTubeIframeAPIReady will load the video after the script is loaded
             window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-      
+        
             const firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            
         } 
-        else if(clickedURL != undefined )
+        else if(values.clickedURL != undefined)
         { 
             if(firstLoad)
             {
-                if(clickedURL != onLoadVideo)
+                if(values.clickedURL != values.onLoadVideo)
                 {
                     player.loadVideoById({
-                        'videoId': videos[clickedURL].url,
+                        'videoId': values.videos[values.clickedURL].url,
                         'startSeconds': (Math.random() * ((player.getDuration()/2) - 80) + 80),
+                        'events': {
+                            onStateChange: onStateChange
+                        }
                     });
                     setFirstLoad(false);
                 }
@@ -65,8 +78,11 @@ const Video = ({clickedURL, onLoadVideo, videos}) => {
             else
             {
                 player.loadVideoById({
-                    'videoId': videos[clickedURL].url,
+                    'videoId': values.videos[values.clickedURL].url,
                     'startSeconds': (Math.random() * ((player.getDuration()/2) - 80) + 80),
+                    'events': {
+                        onStateChange: onStateChange
+                    }
                 });
             }
         } 
@@ -75,10 +91,25 @@ const Video = ({clickedURL, onLoadVideo, videos}) => {
         myPlayer.style.width = window.outerWidth + 'px';
         myPlayer.style.height = window.screen.height + 'px';
 
-    }, [clickedURL]);
+    }, [values.clickedURL]);
+
+    const onStateChange = state =>{
+
+        if (state.data === window.YT.PlayerState.ENDED) {
+            state.target.seekTo((Math.random() * ((state.target.getDuration()/2) - 80) + 80))
+            state.target.playVideo();
+        }
+    }
 
     return (
         <div id="here">
+            
+            <StateContext.Consumer>
+                {contextValue => (
+                    setValues(contextValue)
+                )}
+            </StateContext.Consumer>
+
             <div id="my-player"></div>
         </div>
     );

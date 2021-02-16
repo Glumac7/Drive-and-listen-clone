@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {ListGroup} from 'react-bootstrap';
+import StateContext from './StateContext';
 
-const CityListItems = ({cityName, setClickedURL, onLoadVideo}) => {
+const CityListItems = ({cityName}) => {
 
     const [cityList, setCityList] = useState([]);
+    const [values, setValues] = useState(useContext(StateContext));
 
     let addClass = (event) => {
         
@@ -19,7 +21,7 @@ const CityListItems = ({cityName, setClickedURL, onLoadVideo}) => {
         });
 
         event.target.id="clicked";
-        setClickedURL(event.target.name);
+        values.setClickedURL(event.target.name);
     }
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const CityListItems = ({cityName, setClickedURL, onLoadVideo}) => {
         let setIt = [];
 
         cityName.forEach((element, index) => {
-            if(index == onLoadVideo)
+            if(values.onLoadVideo != undefined && index == values.onLoadVideo)
             {
                 setIt.push(
                     <div onClick={addClass} key={Math.random()} className="container">
@@ -50,7 +52,7 @@ const CityListItems = ({cityName, setClickedURL, onLoadVideo}) => {
         });
         setCityList(setIt);
         
-    }, []);
+    }, [values.onLoadVideo]);
 
     return (
         <>

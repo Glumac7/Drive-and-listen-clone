@@ -136,7 +136,20 @@ iframe {
   height: 100%;
 }
 
+.minimize {
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  color: white;
+  right: 10px;
+  z-index: 1000;
+}
+.minimize:hover {
+  cursor: pointer;
+}
+
 #menu {
+  transition: all 0.5s;
   padding: 30px;
   text-align: center;
   display: inline-block;
@@ -166,6 +179,32 @@ iframe {
 }
 #menu .list-group .list-group-item.active {
   border: none;
+}
+
+.clicked_playback_speed {
+  color: gray;
+  background-color: white !important;
+}
+
+div.playback_speed_container {
+  margin-top: 20px;
+}
+div.playback_speed_container p.playback_speed {
+  font-weight: bold;
+  border-radius: 0.25rem;
+  padding: 2px 8px;
+  display: inline;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(128, 128, 128, 0.5);
+  border: 1px solid white;
+  margin: 5px;
+}
+div.playback_speed_container p.playback_speed:hover {
+  cursor: pointer;
+  color: gray;
+  background-color: white;
+  transition: 0.3s;
 }
 
 /*# sourceMappingURL=App.css.map */

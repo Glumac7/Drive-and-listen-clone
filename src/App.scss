@@ -138,8 +138,20 @@ iframe {
       }
 }
 
-#menu {
+.minimize {
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  color: white;
+  right: 10px;
+  z-index: 1000;
+  &:hover {
+    cursor: pointer;
+  }
+}
 
+#menu {
+    transition: all .5s;
     padding: 30px;
     text-align: center;
     display: inline-block;
@@ -180,3 +192,30 @@ iframe {
     }
 }
 
+.clicked_playback_speed {
+  color: rgb(128,128,128);
+  background-color: white !important;
+}
+
+div.playback_speed_container {
+  margin-top: 20px;
+
+  p.playback_speed {
+    font-weight: bold;
+    border-radius: .25rem;
+    padding: 2px 8px;
+    display: inline;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(128, 128, 128, .5);
+    border: 1px solid white;
+    margin: 5px;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(128,128,128);
+      background-color: white;
+      transition: .3s;
+    }
+  }
+}
