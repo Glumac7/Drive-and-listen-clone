@@ -28,27 +28,6 @@ iframe {
   height: 100%;
 }
 
-/*
-%active {
-
-        content: '';
-        display: block;
-        height: 2px;
-        position: absolute;
-        bottom: 0;
-        right: 1.25rem;
-        left: 1.25rem;
-        background-color: #ffffff;
-        transition: all .3s cubic-bezier(.2, 0, 0, 1);
-        transform-origin: bottom center;
-        z-index: -1;
-        right: 0;
-          left: 0;
-          height: 100%;
-          color: #2D2D2D;
-
-
-}*/
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -187,9 +166,10 @@ iframe {
 }
 
 div.playback_speed_container {
-  margin-top: 20px;
+  margin-top: 5%;
 }
-div.playback_speed_container p.playback_speed {
+
+.button {
   font-weight: bold;
   border-radius: 0.25rem;
   padding: 2px 8px;
@@ -200,11 +180,70 @@ div.playback_speed_container p.playback_speed {
   border: 1px solid white;
   margin: 5px;
 }
-div.playback_speed_container p.playback_speed:hover {
+.button:hover {
   cursor: pointer;
   color: gray;
   background-color: white;
   transition: 0.3s;
+}
+
+.slidecontainer {
+  width: 100%;
+  /* Width of the outside container */
+  margin-top: 5%;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  /* Full-width */
+  height: 15px;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+  /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Override default look */
+  appearance: none;
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background: gray;
+  cursor: pointer;
+  /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  border-radius: 50%;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background: gray;
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 /*# sourceMappingURL=App.css.map */

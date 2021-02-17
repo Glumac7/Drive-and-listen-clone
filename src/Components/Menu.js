@@ -7,6 +7,7 @@ const Menu = () => {
 
     const [values, setValues] = useState(useContext(StateContext));
     const cities = ["New York", "Tokyo", "Seattle", "Paris", "Jackson", "Lincoln", "Madison"]
+    const [volume, setVolume] = useState(50);
 
     const speedClick = (e) => {
         let childNodes = document.querySelector('.playback_speed_container').childNodes;
@@ -36,19 +37,54 @@ const Menu = () => {
         }
     }
 
+    const streetNoiseClick = (event) => {
+        if(event.target.innerText == 'OFF')
+        {
+            event.target.innerText = "ON";
+            values.setStreetNoise(true);
+        }
+        else
+        {
+            event.target.innerText = "OFF";
+            values.setStreetNoise(false);
+        }
+    }
+    
+    useEffect(() => {
+        values.setVolume(volume);
+    }, [volume]);
+
     return (
         <>
             <p onClick={minMenu} className="minimize">X</p>
             <div id="menu">
                 <h1>City List:</h1>
+
                 <ListGroup>
                     <CityListItems cityName={cities}/>
                 </ListGroup>
+
                 <div className="playback_speed_container">
                     <p>Playback speed: </p>
-                    <p onClick={speedClick} className="playback_speed clicked_playback_speed">1</p>
-                    <p onClick={speedClick} className="playback_speed">1.5</p>
-                    <p onClick={speedClick}className="playback_speed">2</p>
+                    <p onClick={speedClick} className="button clicked_playback_speed">1</p>
+                    <p onClick={speedClick} className="button">1.5</p>
+                    <p onClick={speedClick} className="button">2</p>
+                </div>
+
+                <div style={{marginTop: '5%'}}>
+                    <p>Street Noise: </p>
+                    <p onClick={streetNoiseClick} className="button">OFF</p>
+                </div>
+
+                <div className="slidecontainer">
+                    <input 
+                        type="range"
+                        min="1"
+                        max="100"
+                        value={volume}
+                        onChange={(e) => { setVolume(e.target.value) }} 
+                        className="slider"
+                        id="myRange"/>
                 </div>
             </div>
         </>

@@ -3,7 +3,7 @@ import StateContext from './StateContext';
 
 const Video = () => {
 
-    const [values, setValues] = useState({clickedURL: 0, playbackSpeed: 1});
+    const [values, setValues] = useState({clickedURL: 0, volume: 50, playbackSpeed: 1, streetNoise: false});
     const [firstLoad, setFirstLoad] = useState(true);
     const [player, setPlayer] = useState();
 
@@ -40,10 +40,19 @@ const Video = () => {
     useEffect(() => {
         if(player != undefined)
         {
-            player.setPlaybackRate(values.playbackSpeed)
+            player.setPlaybackRate(values.playbackSpeed);
+            player.setVolume(values.volume);
+            if(values.streetNoise)
+            {
+                player.unMute();
+            }
+            else
+            {
+                player.mute();
+            }
         }
        
-    }, [values.playbackSpeed]);
+    }, [values.playbackSpeed, values.streetNoise, values.volume]);
 
     //when clickedURL changes:
     useEffect(() => { 

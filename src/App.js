@@ -14,11 +14,13 @@ function App() {
     {url: "yqOlY5uBBbo", name: "paris"}
   ]);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [streetNoise, setStreetNoise] = useState(false);
+  const [volume, setVolume] = useState(50);
   const [clickedURL, setClickedURL] = useState();
   const [onLoadVideo, setOnLoadVideo] = useState(Math.floor(Math.random() * (videos.length - 0) + 0));
 
   return (
-      <StateContext.Provider value={{videos, setPlaybackSpeed, playbackSpeed, clickedURL, onLoadVideo, setClickedURL}}>
+      <StateContext.Provider value={{volume, setVolume, videos, streetNoise, setStreetNoise, setPlaybackSpeed, playbackSpeed, clickedURL, onLoadVideo, setClickedURL}}>
           <Container className="App" fluid>
             <Video></Video>
             <Menu></Menu>
