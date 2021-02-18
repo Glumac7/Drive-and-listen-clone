@@ -6,7 +6,8 @@ import StateContext from './StateContext';
 const Menu = () => {
 
     const [values, setValues] = useState(useContext(StateContext));
-    const cities = ["New York", "Tokyo", "Seattle", "Paris", "Jackson", "Lincoln", "Madison"]
+    const [source, setSource] = useState(values.onLoadVideo);
+    const cities = ["New York", "Tokyo", "Seattle", "Paris", "Vienna", "Rome", "Florence", "Monte Carlo", "Milan", "Berlin", "Vancouver", "Pterovac & Kotor", "London", "Bologna"]
     const [volume, setVolume] = useState(50);
 
     const speedClick = (e) => {
@@ -54,6 +55,13 @@ const Menu = () => {
         values.setVolume(volume);
     }, [volume]);
 
+    const sourceClick = () => {
+        let url = "https://youtube.com/watch?v=" + values.videos[source].url;
+
+        let win = window.open(url, '_blank');
+        win.focus();
+    }
+
     return (
         <>
             <p onClick={minMenu} className="minimize">X</p>
@@ -61,7 +69,7 @@ const Menu = () => {
                 <h1>City List:</h1>
 
                 <ListGroup>
-                    <CityListItems cityName={cities}/>
+                    <CityListItems cityName={cities} setSource={setSource}/>
                 </ListGroup>
 
                 <div className="playback_speed_container">
@@ -86,6 +94,7 @@ const Menu = () => {
                         className="slider"
                         id="myRange"/>
                 </div>
+                <p onClick={sourceClick} style={{textDecoration: "underline", cursor: "pointer"}}>Video Source!</p>
             </div>
         </>
     );

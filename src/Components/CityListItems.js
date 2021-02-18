@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import {ListGroup} from 'react-bootstrap';
 import StateContext from './StateContext';
 
-const CityListItems = ({cityName}) => {
+const CityListItems = ({cityName, setSource}) => {
 
     const [cityList, setCityList] = useState([]);
     const [values, setValues] = useState(useContext(StateContext));
@@ -22,6 +22,7 @@ const CityListItems = ({cityName}) => {
 
         event.target.id="clicked";
         values.setClickedURL(event.target.name);
+        setSource(event.target.name)
     }
 
     useEffect(() => {
