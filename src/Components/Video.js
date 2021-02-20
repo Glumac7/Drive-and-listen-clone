@@ -12,6 +12,7 @@ const Video = () => {
         setPlayer(new window.YT.Player('my-player', {
             'videoId': values.videos[values.onLoadVideo].url,
             'playerVars': {
+                'iv_load_policy': 3,
                 'autoplay': 1,
                 'controls': 0,
                 'disablekb': 1,
@@ -100,10 +101,23 @@ const Video = () => {
         myPlayer.style.width = window.outerWidth + 'px';
         myPlayer.style.height = window.screen.height + 'px';
 
+
     }, [values.clickedURL]);
 
     const onStateChange = state =>{
-
+        
+        if (state.data == 1)
+        {
+            setTimeout(() => {
+                document.querySelector('.App').childNodes[0].id = "";
+            }, 3200);
+        }
+        else
+        {
+            document.querySelector('.App').childNodes[0].id = "over_iframe";
+            //document.getElementById("my-player").setAttribute('src', document.getElementById("my-player").getAttribute('src') + '&')
+        }
+        
         if (state.data === window.YT.PlayerState.ENDED) {
             state.target.seekTo((Math.random() * ((state.target.getDuration()/2) - 80) + 80))
             state.target.playVideo();
@@ -111,16 +125,18 @@ const Video = () => {
     }
 
     return (
-        <div id="here">
-            
-            <StateContext.Consumer>
-                {contextValue => (
-                    setValues(contextValue)
-                )}
-            </StateContext.Consumer>
-
-            <div id="my-player"></div>
-        </div>
+        <>
+            <div id="over_iframe"></div>
+            <div id="here">
+                
+                <StateContext.Consumer>
+                    {contextValue => (
+                        setValues(contextValue)
+                    )}
+                </StateContext.Consumer>
+                <div id="my-player"></div>
+            </div>
+        </>
     );
 }
 

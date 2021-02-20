@@ -7,7 +7,7 @@ const Menu = () => {
 
     const [values, setValues] = useState(useContext(StateContext));
     const [source, setSource] = useState(values.onLoadVideo);
-    const cities = ["New York", "Tokyo", "Seattle", "Paris", "Vienna", "Rome", "Florence", "Monte Carlo", "Milan", "Berlin", "Vancouver", "Pterovac & Kotor", "London", "Bologna"]
+    const cities = ['Amsterdam', 'Berlin', 'Bologna', 'Florence', 'London', 'Milan', 'New York', 'Paris', 'Petrovac & Kotor', 'Rome', 'Seattle', 'Tokyo', 'Vancouver', 'Vienna']
     const [volume, setVolume] = useState(50);
 
     const speedClick = (e) => {
@@ -94,7 +94,7 @@ const Menu = () => {
                         className="slider"
                         id="myRange"/>
                 </div>
-                <p onClick={sourceClick} style={{textDecoration: "underline", cursor: "pointer"}}>Video Source!</p>
+                <p onClick={sourceClick} style={{textDecoration: "underline", cursor: "pointer", marginTop: "5%"}}>Video Source!</p>
             </div>
         </>
     );

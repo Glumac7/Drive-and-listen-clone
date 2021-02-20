@@ -9,20 +9,20 @@ function App() {
 
   //hide everything and add video source
   const [videos, setVideos] = useState([
-    {url: "m04Q97CTvCk", name: 'new-york'},
-    {url: "0nTO4zSEpOs", name: 'tokyo'},
-    {url: "3EaCj-seAHM", name: 'seattle'},
-    {url: "yqOlY5uBBbo", name: "paris"},
-    {url: "SLmDgMZSeJ4", name: "vienna"},
-    {url: "Gy6fDx9L-zk", name: "rome"},
-    {url: "AqFLqzHAgzA", name: "florence"},
-    {url: "Vb5aqR2WxoQ", name: "monte carlo"},
-    {url: "_1Kr90k_yJk", name: "milan"},
+    {url: "E07rTPgIvn0", name: "amsterdam"},
     {url: "zca688Ecwpk", name: "berlin"},
-    {url: "lh8dNmneVyY", name: "vancouver"},
-    {url: "AJNh9zZm2wI", name: "petrovac & kotor"},
-    {url: "MGMqLGvtNpY", name: "london"},
     {url: "b7Pbm-jbilM", name: "bologna"},
+    {url: "AqFLqzHAgzA", name: "florence"},
+    {url: "MGMqLGvtNpY", name: "london"},
+    {url: "_1Kr90k_yJk", name: "milan"},
+    {url: "uMnGzVPUEB4", name: 'new-york'},
+    {url: "yqOlY5uBBbo", name: "paris"},
+    {url: "AJNh9zZm2wI", name: "petrovac & kotor"},
+    {url: "Gy6fDx9L-zk", name: "rome"},
+    {url: "3EaCj-seAHM", name: 'seattle'},
+    {url: "0nTO4zSEpOs", name: 'tokyo'},
+    {url: "lh8dNmneVyY", name: "vancouver"},
+    {url: "SLmDgMZSeJ4", name: "vienna"},
   ]);
   
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
