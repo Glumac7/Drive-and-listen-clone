@@ -137,7 +137,9 @@ iframe {
   }
 }
 
+
 #menu {
+    overflow: auto;
     transition: all .5s;
     padding: 30px;
     text-align: center;
@@ -177,6 +179,13 @@ iframe {
           @extend %link_style;
           
     }
+}
+
+@media(max-width: 1200px){
+  #menu { width: 40% !important; }
+}
+@media(max-width: 500px){
+  #menu { width: 100% !important; }
 }
 
 .clicked_playback_speed {

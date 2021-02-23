@@ -137,6 +137,7 @@ iframe {
 }
 
 #menu {
+  overflow: auto;
   transition: all 0.5s;
   padding: 30px;
   text-align: center;
@@ -169,6 +170,16 @@ iframe {
   border: none;
 }
 
+@media (max-width: 1200px) {
+  #menu {
+    width: 40% !important;
+  }
+}
+@media (max-width: 500px) {
+  #menu {
+    width: 100% !important;
+  }
+}
 .clicked_playback_speed {
   color: gray;
   background-color: white !important;

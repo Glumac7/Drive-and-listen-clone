@@ -28,7 +28,7 @@ const Menu = () => {
 
     const minMenu = () => {
         let menu = document.getElementById("menu");
-        if(menu.style.right == -menu.offsetWidth + 'px')
+        if(menu.style.right != '0px' && menu.style.right != "")
         {
             menu.style.right = 0 + 'px';
         }
@@ -37,6 +37,41 @@ const Menu = () => {
             menu.style.right = -menu.offsetWidth + 'px'
         }
     }
+
+    window.addEventListener("orientationchange", event => {
+        
+        setTimeout(() => {
+            let menu = document.getElementById("menu");
+
+            if(menu.style.right == "")
+            {
+                menu.style.right = '0px';
+            }
+
+            if(event.currentTarget.screen.availWidth < event.currentTarget.screen.availHeight)
+            {
+                if(menu.style.right != '0px')
+                {
+                    menu.style.right = -event.currentTarget.screen.availWidth + 'px';
+                }
+                else
+                {
+                    menu.style.right = '0px';
+                }
+            }
+            else
+            {
+                if(menu.style.right != '0px')
+                {
+                    menu.style.right = -(event.currentTarget.screen.availWidth * .4) + 'px';
+                }
+                else
+                {
+                    menu.style.right = '0px';
+                }
+            }
+        }, 0);     
+    });
 
     const streetNoiseClick = (event) => {
         if(event.target.innerText == 'OFF')

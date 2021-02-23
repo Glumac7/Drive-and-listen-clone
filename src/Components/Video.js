@@ -97,9 +97,12 @@ const Video = () => {
             }
         } 
 
-        let myPlayer = document.getElementById('my-player');
-        myPlayer.style.width = window.outerWidth + 'px';
-        myPlayer.style.height = window.screen.height + 'px';
+        if(window.outerWidth >= 1200 || window.outerHeight >= 1200)
+        {
+            let myPlayer = document.getElementById('my-player');
+            myPlayer.style.width = window.outerWidth + 'px';
+            myPlayer.style.height = window.screen.height + 'px';
+        }
 
 
     }, [values.clickedURL]);
